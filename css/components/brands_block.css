@@ -1,0 +1,59 @@
+.brands_block {
+  padding: 30px 0;
+  background: url(../images/wood_bg.jpg);
+  background-size: auto;
+  background-repeat: repeat-y;
+  background-position: top center;
+}
+.brands_block .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.brands_block .wrapper > a {
+  -ms-flex-preferred-size: 16.66666667%;
+      flex-basis: 16.66666667%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.brands_block .wrapper img {
+  width: 150px;
+}
+@media (max-width: 992px) {
+  .brands_block .wrapper a {
+    -ms-flex-preferred-size: 33.33333333%;
+        flex-basis: 33.33333333%;
+  }
+}
+@media (max-width: 480px) {
+  .brands_block {
+    padding: 30px 0;
+  }
+  .brands_block .wrapper a {
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+  }
+}
+/*# sourceMappingURL=brands_block.css.map */

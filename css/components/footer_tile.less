@@ -1,0 +1,47 @@
+.footer_tile{
+	&.bg_image{
+		background-position: bottom center;
+		background-size: auto;
+		background-repeat: repeat-y;
+	}
+	a{
+		color: @black;
+	}
+	.info_phone{
+	    font-size: 32px;
+	    color: @black;
+	    text-decoration: none;	
+	    padding-bottom: 5px;
+		&:hover{
+			color: @peach2;
+		}
+	}
+	.info_adress,
+	.info_email{
+		font-size: 18px;
+		font-family: 'OpenSansItalic';
+		padding-bottom: 8px;
+	}
+	.online_link{
+		font-size: 13px;
+		padding-bottom: 8px;
+	}
+	.social{
+		margin-bottom: -40px;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.footer_tile{
+		.online_link{
+			font-size: 10px;
+		}
+		.info_phone{
+		    font-size: 30px;
+		}	
+		.social{
+			margin-bottom: -20px;
+		}			
+	}
+}

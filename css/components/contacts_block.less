@@ -1,0 +1,58 @@
+.contacts_block{
+	.wrapper{
+		padding: 45px 0 0; 
+	}
+	.info_phone{
+		text-align: center;
+		font: 32px 'PlayfairDisplayRegular';
+		padding: 18px 0; 
+		a{
+			color: @black;
+			text-decoration: none;			
+		}
+	}
+	.info_name{
+		font: 31px 'PlayfairDisplayRegular';
+		padding: 20px 0;	
+		text-align: center;
+	}	
+	.info_adress{
+		list-style: none;
+	    font: 1.25em 'OpenSansItalic';
+	    text-align: center;	
+		padding: 18px 0; 	
+	}
+	.shedule{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		.shedule_title{
+			font: 14px 'OpenSansBold';
+		    color: #000000;
+		    text-transform: uppercase;
+		    letter-spacing: 3px;
+		    display: inline-block;
+		    padding: 0 60px 0 0;
+		}
+		.shedule_content{
+			ul{
+				list-style: none;
+				font: 20px 'OpenSansItalic';
+				margin: 15px 0;
+			    padding: 0;
+				li{
+					margin-bottom: -4px;
+					&:before{
+						content: '• ';
+						font: 32px 'Arial';
+						color: @pink;
+						position: relative;
+						top: 3px;
+					}
+				}
+			}
+		}
+	}
+}

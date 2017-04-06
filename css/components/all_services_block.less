@@ -1,0 +1,22 @@
+.all_services_block{
+	background-color: @white;
+	.wrapper{
+		padding: 30px 15px 95px;
+	}	
+	.block_title{
+		padding: 15px 0 50px; 
+		&.discount10{
+			position: relative;
+			padding-right: 110px;
+			&:after{
+				content:'';
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 100px;
+				height: 100px;
+				background-image: url('../images/discount_10.png');
+			}
+		}
+	}	
+}

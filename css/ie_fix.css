@@ -1,0 +1,23 @@
+@media \0screen\,screen\9 {
+	.text_logo:before{
+		display: none !important; 
+	}
+	input[type=text]::-ms-clear{
+    	display: none;
+	}
+	.brands_block .wrapper img{
+		height: 130px;
+	}
+}
+
+@media screen and (min-width:0\0) {
+	.text_logo:before{
+		display: none !important; 
+	}	
+	input[type=text]::-ms-clear{
+    	display: none;
+	}
+	.brands_block .wrapper img{
+		height: 130px;
+	}
+}

@@ -1,0 +1,96 @@
+.page_content_block{
+	font-family: 'OpenSansRegular';
+	line-height: 2;
+	padding: 50px 0;
+	min-height: 500px;
+	h1,h1,h3,h4,h5,h6{
+		font-family: 'PlayfairDisplayRegular';
+		font-weight: normal;		
+	}
+	img{
+		max-width: 100%;
+		height: auto;
+		&.alignleft{
+			float: left;
+			margin-right: 30px;
+			margin-bottom: 15px;
+		}
+		&.alignright{
+			float: right;
+			margin-left: 30px;
+			margin-bottom: 15px;
+		}
+	}
+	figure{
+		padding: 0;
+		margin: 30px -30px;
+		display: flex;
+		flex-direction: column;
+		figcaption{
+			background-image: url('../images/wood_bg.jpg');
+			background-size: cover;
+			color: @black;
+			padding: 22px 30px;
+			padding-right: 225px;
+			position: relative;
+			&:after{
+				content: '';
+				position: absolute;
+				top: -66px;
+				right: 44px;
+				width: 160px;
+				height: 160px;
+				background-image: url('../images/musha_logo.svg');
+				background-repeat: no-repeat;
+			}
+		}
+	}
+	h1{
+		font-size: 30px;
+	}
+	p{
+
+	}
+	a{
+		color: inherit;
+	}
+	strong{
+		font-family: 'OpenSansBold';
+	}
+	.post-title{
+		font-family: 'PlayfairDisplayRegular';
+		margin-top: 0;
+	}
+	.post-date{
+		font-family: 'OpenSansItalic';
+	}
+	ul.square{
+		padding-left: 32px;
+		list-style: none;
+		li{
+			position: relative;
+			&:not(:last-child){
+				padding-bottom: 40px;
+			}
+			&:before{
+				content: '■';
+				display: inline-block;
+				font-family:"Arial";
+				color: @pink;
+				position: absolute;
+				top: 0;
+				left: -32px;
+			}
+		}
+	}
+}
+
+
+@media (max-width: 1023px) {
+	.page_content_block{
+		figure{
+			margin-left: 0;
+			margin-right: 0;
+		}		
+	}	
+}
