@@ -11,7 +11,7 @@ Template Name: All services
 
 	$serv_and_prices_ID = intval( get_field('serv_and_prices_ID', $opID) );
 	$hidden_cats_repeater = get_field('hidden_cats_repeater',$serv_and_prices_ID);
-	$no_discount_repeater = get_field('no_discount_repeater',$serv_and_prices_ID);
+	$discount_repeater = get_field('discount_repeater',$serv_and_prices_ID);
 
 
 	$serv_pages = get_posts( array(
@@ -90,11 +90,12 @@ Template Name: All services
 		<div class="all_services_block">
 			<div class="wrapper">
 				<?php
-					$add_discount_class = true;
-					foreach ($no_discount_repeater as $key => $value) {
-						if( $service['ID'] === $value['no_discount_cat'] ){ $add_discount_class = false; }
+					$discount_class = '';
+					if( $discount_repeater !== null ){
+						foreach ($discount_repeater as $key => $value) {
+							if( $service['ID'] === $value['discount_cat'] ){ $discount_class = 'discount'.$value['discount_val'][0]; }
+						}
 					}
-					$discount_class = $add_discount_class === false ? '' : 'discount10';
 				?>
 				<div class="block_title <?php echo $discount_class; ?>">
 

@@ -1636,7 +1636,7 @@ header .mobile-menu {
   right: 0;
   width: 100px;
   height: 100px;
-  //background-image: url('../images/discount_10.png');
+  background-image: url('../images/discount_10.png');
 }
 .contacts_block .wrapper {
   padding: 45px 0 0;
