@@ -48,20 +48,13 @@ td,th{padding:0}
 .add_font( @font_name ){
 	@font-face {
 		font-family: '@{font_name}';
-		src:url('../fonts/@{font_name}/@{font_name}.woff2'),
-			url('../fonts/@{font_name}/@{font_name}.woff'),
-			url('../fonts/@{font_name}/@{font_name}.ttf'),
-			url('../fonts/@{font_name}/@{font_name}.eot');
+		src:url('../fonts/@{font_name}/@{font_name}.woff'),
+			url('../fonts/@{font_name}/@{font_name}.woff2');
 	}	
 }
 
 .add_font( 'fontawesome-webfont' );
-.add_font( 'OpenSansBold' );
-.add_font( 'OpenSansRegular' );
-.add_font( 'PlayfairDisplayRegular' );
-.add_font( 'PlayfairDisplayItalic' );
 .add_font( 'MyriadProItalic' );
-.add_font( 'OpenSansItalic' );
 
 @black: #000000;
 @white: #ffffff;
@@ -72,6 +65,8 @@ td,th{padding:0}
 @peach: #ffbea7;
 @peach2: #ffac8f;
 @gray_f3: #f3f3f3;
+@gray_9e: #9e9e9e;
+
 
 *{
 	box-sizing: border-box;
@@ -79,6 +74,9 @@ td,th{padding:0}
 
 
 body{
+	font-family: 'Open Sans';
+	line-height: 1.2;
+	overflow-x: hidden;
 	&.search_box-visible{
 		height: 100vh;
 		overflow: hidden;
@@ -88,7 +86,8 @@ body{
 	}
 }
 
-@import 'font-awesome.min.css';
+@import 'vendor/font-awesome.min.css';
+@import 'vendor/swiper.min.css';
 @import 'ie_fix.css';
 
 
@@ -109,11 +108,24 @@ body{
 @import 'components/map_block.less';
 @import 'components/footer_tile.less';
 @import 'components/bg_block-first.less';
+@import 'components/musha_gallery.less';
+@import 'components/shop_items.less';
 @import 'components/footer.less';
 
 
 
 
+.xdebug-var-dump{
+	position: fixed;
+	padding: 100px;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	height: 100vh;
+	background-color: #ffffff;
+	z-index: 500;
+	overflow: scroll;
+}
 
 
 

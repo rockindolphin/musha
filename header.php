@@ -18,6 +18,9 @@
 	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
 	<![endif]-->
 	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&amp;subset=cyrillic" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&amp;subset=cyrillic" rel="stylesheet">
+	
 	<?php wp_head(); ?>
 </head>
 
@@ -102,3 +105,11 @@
 			</div>
 		</div>
 	</header>
+	<!-- кнопка "Beauty клуб Муша"  -->
+	<?php
+		$opID = get_page_by_title( 'THEME_OPTIONS_PAGE' )->ID;
+		$action_beauty_start_id = intval( get_field('action_beauty_start_id', $opID) );
+	?>
+	<a href="<?php the_permalink( $action_beauty_start_id ); ?>" class="button button-shadow" style="position: fixed;top: 140px;left: 15px;z-index:2;">
+		<i>Beauty клуб <b>Муша</b></i>
+	</a>		

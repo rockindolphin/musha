@@ -14,10 +14,10 @@ Template Name: Single template
 		while ( have_posts() ) : the_post();
 			switch ($curr_cat->term_id) {
 				case $news_cat:
-					require_once('single_news.php'); 
+					require_once('custom-templates/single_news.php'); 
 				break;
 				case $actions_cat:
-					require_once('single_actions.php'); 
+					require_once('custom-templates/single_actions.php'); 
 				break;
 				default:
 					?>

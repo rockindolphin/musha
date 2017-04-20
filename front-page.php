@@ -4,6 +4,70 @@ Template Name: Главная страница
 */
 ?>
 
+<?php
+
+	function textTile($value){
+		?>
+			<div class="tile <?php echo $value['tile_class']; ?>">
+				<div class="tile_content">
+					<div class="tile_title">
+						<?php  echo $value['tile_title']; ?>
+					</div>
+					<a class="online_link" href="<?php echo $value['tile_link']; ?>">
+						<?php echo $value['tile_link_text']; ?>
+					</a>	
+				</div>
+				<div class="tile_expand"></div>
+			</div>
+		<?php
+	}
+
+	function pictureTile($value){
+		?>
+			<div class="tile">
+				<div class="tile_content tile_content-pic">
+					<img src="<?php echo $value['tile_img']; ?>" alt="<?php echo $value['tile_img_alt']; ?>" data-fit="true">											
+				</div>
+				<div class="tile_expand"></div>
+			</div>
+		<?php
+	}
+
+	function text_pictureTile($value){
+		?>
+			<div class="tile tile-big">
+				<div class="tile_content tile_content-pic">
+					<img src="<?php echo $value['tile_img']; ?>" alt="<?php echo $value['tile_img_alt']; ?>" data-fit="true">
+					<?php textTile($value); ?>										
+				</div>
+				<div class="tile_expand"></div>
+			</div>
+		<?php
+	}
+
+	function getTile( $repeaterName ){
+		$repeater = get_field($repeaterName);
+		foreach ($repeater as $key => $value) {
+			switch ($value['tile_type']) {
+				case 'text':
+					textTile($value);
+					break;
+				case 'picture':
+					pictureTile($value);
+					break;
+				case 'text_picture':
+					text_pictureTile($value);
+					break;
+				
+				default:
+					return;
+					break;
+			}
+		}
+	}
+
+?>	
+
 <?php get_header(); ?>
 
 	<main>
@@ -16,33 +80,12 @@ Template Name: Главная страница
 					<?php the_field('tiles_title'); ?>
 				</div>
 				<div class="tiles">
-					<?php
-						$repeater = get_field('tiles_repeater');
-						foreach ($repeater as $key => $value) {
-							if ( $value['tile_type'] === 'text' ){
-							?>
-								<div class="tile <?php echo $value['tile_class']; ?>">
-									<div class="tile_content">
-										<div class="tile_title">
-											<?php  echo $value['tile_title']; ?>
-										</div>
-										<a class="online_link" href="<?php echo $value['tile_link']; ?>">онлайн-запись</a>	
-									</div>
-									<div class="tile_expand"></div>
-								</div>
-							<?php
-							}else{
-								?>
-									<div class="tile <?php echo $value['tile_class']; ?>">
-										<div class="tile_content tile_content-pic">
-											<img src="<?php echo $value['tile_img']; ?>" alt="<?php echo $value['tile_img_alt']; ?>">
-										</div>
-										<div class="tile_expand"></div>
-									</div>
-								<?php								
-							}
-						}							
-					?>
+					<div class="tiles-side">
+						<?php getTile('tiles_repeater-left')?>
+					</div>
+					<div class="tiles-side">
+						<?php getTile('tiles_repeater-right')?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -94,5 +137,5 @@ Template Name: Главная страница
 		</div>
 	</main>
 	
-<?php get_template_part('footer_tile'); ?>
+<?php get_template_part('custom-templates/footer_tile'); ?>
 <?php get_footer(); ?>

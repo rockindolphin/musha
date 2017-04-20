@@ -79,7 +79,7 @@ add_theme_support( 'post-thumbnails' );
 
 function my_theme_load_resources() {
 
-    wp_enqueue_style('my_theme_style', get_template_directory_uri() . '/css/style.css', array(), '1.0.1');
+    wp_enqueue_style('my_theme_style', get_template_directory_uri() . '/css/style.css', array(), '1.0.4');
 
 }
 
@@ -97,7 +97,8 @@ if (!is_admin()) {
     wp_deregister_script('jquery');
 	wp_register_script('jquery', ("https://code.jquery.com/jquery-2.2.4.min.js"), false, '2.2.4');
     wp_enqueue_script('jquery');
-	wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js');
+    wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.min.js');
+	wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', false, '0.0.2');
 }
 
 
@@ -382,18 +383,21 @@ function send_sms($phone_number, $text){
 
 /*walker menu*/
 $serv_and_prices_ID = intval( get_field('serv_and_prices_ID', $opID) );
+$actions_ID = intval( get_field('actions_ID', $opID) );
 
 class mainMenuWalker extends Walker_Nav_Menu {
   function start_el(&$output, $item, $depth, $args) {
     global $serv_and_prices_ID;
+    global $actions_ID;
+
     // назначаем классы li-элементу и выводим его
     $class_names = join( ' ', $item->classes );
     $class_names = ' class="' .esc_attr( $class_names ). '"';
     $output.= '<li id="menu-item-' . $item->ID . '"' .$class_names. '>';
 
     // назначаем атрибуты a-элементу
-    if( $item->post_parent === $serv_and_prices_ID ){ 
-        $attributes.= !empty( $item->url ) ? ' href="' .esc_attr($item->url). '#list"' : '';
+    if( $item->post_parent === $serv_and_prices_ID ){
+        $attributes.= !empty( $item->url ) ? ' href="' .esc_attr($item->url). '#list"' : '';//добавляем якоря к подстарницам "Услуги и цены"
     }else{
         $attributes.= !empty( $item->url ) ? ' href="' .esc_attr($item->url). '"' : '';
     }
@@ -404,12 +408,86 @@ class mainMenuWalker extends Walker_Nav_Menu {
     $item_url = esc_attr( $item->url );
     //if ( $item_url != $current_url ) $item_output.= '<a'. $attributes .'>'.$item->title.'</a>';
     //else $item_output.= $item->title;
-    $item_output.= '<a'. $attributes .'>'.$item->title.'</a>';
+    if( intval($item->object_id) === $actions_ID ){ 
+        $item_output.= '<a'. $attributes .'>'.$item->title.'<span class="menu-item-icon actions-icon">%</span></a>'; 
+    }else{
+        $item_output.= '<a'. $attributes .'>'.$item->title.'</a>';    
+    }
+
+    foreach ($item->classes as $key => $value) {
+      if( $value === 'menu-item-has-children' ){
+        $item_output.= '<span class="menu-open-btn"><i class="fa fa-angle-down" aria-hidden="true"></i></span>';
+      }      
+    }
 
     // заканчиваем вывод элемента
     $item_output.= $args->after;
     $output.= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
   }
 }
+
+
+
+function addMushaGallery($attr = null){
+    global $envira_gallery_lite;
+    if( $attr && $attr['id']){
+        $gallery = $envira_gallery_lite->get_gallery( intval($attr['id']) ); 
+        if( $gallery ){
+            $resp = 
+            '<div class="musha-gallery">'.
+                '<div class="musha-gallery-bg">'.
+                    '<div class="wrapper">'.
+                        '<div class="swiper-container top-container">'.
+                            '<div class="swiper-wrapper">';           
+                                foreach ($gallery['gallery'] as $key => $value) {
+                                    $resp .=
+                                    '<div class="swiper-slide">'.
+                                        '<img src="'. $value['src']. '" alt="'. $value['alt']. '" data-fit="true">'.
+                                        '<meta itemprop="description" content="'. $value['title']. '">'.
+                                    '</div>';
+                                }
+                            $resp .=
+                            '</div>'.
+                            '<div class="swiper-button swiper-button-prev">'.
+                                '<i class="fa fa-angle-left" aria-hidden="true"></i>'.
+                            '</div>'.
+                            '<div class="swiper-button swiper-button-next">'.
+                                '<i class="fa fa-angle-right" aria-hidden="true"></i>'.
+                            '</div>'.
+                        '</div>'.
+                    '</div>'.            
+                '</div>'.
+                '<div class="wrapper">'.
+                    '<div class="gallery-desc">'.
+                        '<div class="slide-desc"></div>'.
+                        '<div class="swiper-pagination"></div>'.                    
+                    '</div>'.
+                    '<div class="swiper-container thumbs-container">'.
+                        '<div class="swiper-wrapper">';
+                            foreach ($gallery['gallery'] as $key => $value) {
+                                $resp .=
+                                    '<div class="swiper-slide">'.
+                                        '<img src="'. $value['src']. '" alt="'. $value['alt']. '" data-fit="true">'.
+                                    '</div>';
+                            }
+                            $resp.=
+                        '</div>'.
+                    '</div>'.                                       
+                '</div>'.
+            '</div>';          
+        }
+    }
+    return $resp;
+}
+
+add_shortcode( 'musha_gallery', 'addMushaGallery' );
+
+
+//auto formating
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );
+
+
+
 
 ?>

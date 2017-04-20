@@ -33,4 +33,56 @@ $(document).ready(function(){
 		$('header .mobile-menu').toggleClass('visible');
 	});
 
+	$('.menu-open-btn').click(function(){
+		$(this).next().toggleClass('sub-menu-visible');
+	});
+
+	//замена картинок
+	$('img[data-fit="true"]').each(function(){
+		var src = $(this).attr('src');
+		var replacer = document.createElement('div');
+		$(replacer).css('background-image', 'url('+src+')').addClass('image_fit_replacer');
+		$(this).after(replacer);
+		$(this).hide();
+	}); 
+
+	//галерея
+	$('.musha-gallery').each(function(){
+		var top = $(this).find('.top-container')[0];
+		var thumbs = $(this).find('.thumbs-container')[0];
+		var pagination = $(this).find('.swiper-pagination')[0];
+		var galleryTop = new Swiper(top, {
+			direction: 'horizontal',
+			speed: 400,
+		    initialSlide: 1,
+		    slideToClickedSlide: false,
+		    pagination: pagination,
+		    paginationType: 'fraction',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slideDesc: $(this).find('.slide-desc')[0],
+	        onInit: function(swiper){
+	        	$.makeArray(swiper.slides).map(function(slide){
+	        		slide.description = $(slide).find('meta[itemprop=description]').attr('content');
+	        	});
+	        	$(swiper.params.slideDesc).html( swiper.slides[swiper.activeIndex].description );
+	        },
+	        onSlideChangeEnd: function(swiper){
+	        	$(swiper.params.slideDesc).html( swiper.slides[swiper.activeIndex].description );
+	        }		    
+		});
+		var galleryThumbs = new Swiper(thumbs, {
+			direction: 'horizontal',
+			speed: 400,
+			initialSlide: 1,
+			slidesPerView: 5,
+			slideToClickedSlide: true,
+			centeredSlides: true,
+		});	
+	    galleryTop.params.control = galleryThumbs;
+	    galleryThumbs.params.control = galleryTop;			  
+	});
+
+
+
 });
