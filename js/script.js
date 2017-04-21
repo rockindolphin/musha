@@ -54,7 +54,6 @@ $(document).ready(function(){
 		var galleryTop = new Swiper(top, {
 			direction: 'horizontal',
 			speed: 400,
-		    initialSlide: 1,
 		    slideToClickedSlide: false,
 		    pagination: pagination,
 		    paginationType: 'fraction',
@@ -74,7 +73,6 @@ $(document).ready(function(){
 		var galleryThumbs = new Swiper(thumbs, {
 			direction: 'horizontal',
 			speed: 400,
-			initialSlide: 1,
 			slidesPerView: 5,
 			slideToClickedSlide: true,
 			centeredSlides: true,

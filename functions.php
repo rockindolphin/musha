@@ -98,7 +98,7 @@ if (!is_admin()) {
 	wp_register_script('jquery', ("https://code.jquery.com/jquery-2.2.4.min.js"), false, '2.2.4');
     wp_enqueue_script('jquery');
     wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.min.js');
-	wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', false, '0.0.2');
+	wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', false, '0.0.3');
 }
 
 
