@@ -2472,6 +2472,7 @@ header .mobile-menu {
   font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
+  max-width: 100%;
 }
 @media (max-width: 295+20*2px) {
   .shop-items .shop-item {
