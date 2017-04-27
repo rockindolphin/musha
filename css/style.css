@@ -2426,7 +2426,9 @@ header .mobile-menu {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  width: 100%;
+  /*width: 100%;*/
+  width: 33%;
+  /*safari flex-wrap bug*/
 }
 .shop-items .shop-item-pic {
   margin-bottom: 20px;
@@ -2477,6 +2479,17 @@ header .mobile-menu {
 @media (max-width: 295+20*2px) {
   .shop-items .shop-item {
     max-width: 100%;
+  }
+}
+/*safari flex-wrap bug*/
+@media (max-width: 975px) {
+  .shop-items .shop-item {
+    width: 50%;
+  }
+}
+@media (max-width: 680px) {
+  .shop-items .shop-item {
+    width: 100%;
   }
 }
 footer .cellar {

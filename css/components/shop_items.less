@@ -8,7 +8,8 @@
 		margin-bottom: 20px;
 		max-width: 295px;
 		flex-grow: 1;
-		width: 100%;
+		/*width: 100%;*/
+		width: 33%; /*safari flex-wrap bug*/
 	}
 	.shop-item-pic{
 		margin-bottom: 20px;
@@ -60,4 +61,19 @@
 	}	
 }
 
+/*safari flex-wrap bug*/
+@media (max-width: 975px){
+	.shop-items{
+		.shop-item{
+			width: 50%;
+		}	
+	}
+}
 
+@media (max-width: 680px){
+	.shop-items{
+		.shop-item{
+			width: 100%;
+		}
+	}	
+}
