@@ -45,7 +45,8 @@ Template Name: Beauty_shop.php
 				<?php
 
 				$args = array(
-					'post_type'	 => 'al_product',				
+					'post_type'	 => 'al_product',
+					'posts_per_page' => -1				
 				);
 
 				if( isset($_GET['shop_cat']) ){
