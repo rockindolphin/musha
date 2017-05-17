@@ -44,9 +44,11 @@ Template Name: Beauty_shop.php
 			<div class="page_content_block">
 				<?php
 
+				$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 				$args = array(
 					'post_type'	 => 'al_product',
-					'posts_per_page' => -1				
+					'paged' => $paged,
+					'posts_per_page' => 15				
 				);
 
 				if( isset($_GET['shop_cat']) ){
@@ -62,6 +64,7 @@ Template Name: Beauty_shop.php
 				}
 
 				$the_query = new WP_Query( $args );
+				$curr_page = $the_query->query['paged'];
 
 				?>
 				<div class="shop-items">
@@ -85,6 +88,28 @@ Template Name: Beauty_shop.php
 						<?php endwhile; ?>
 					<?php endif; ?>
 				</div>
+
+
+				<?php if ($the_query->max_num_pages > 1) { // check if the max number of pages is greater than 1  ?>
+				  <nav class="pagination">
+			      	<?php 
+				      	echo get_previous_posts_link( '<span class="pagination-text-link"> < </span>' );
+				    	for ($i=1; $i <= $the_query->max_num_pages; $i++) {
+				    		if( $i < $curr_page-3 || $i > $curr_page+3 ){
+				    			continue;
+				    		}
+				    		$item_class = '';
+				    		if( $i === $curr_page ){ 
+				    			$item_class='pagination-current'; 
+				    		}
+				    		$next_link = get_next_posts_link('<span class="'.$item_class.'">'.$i.'</span>' ,$the_query->max_num_pages);
+				    		echo preg_replace( '/page\/(\d*)\//', 'page/'.$i, $next_link );
+				    	}			    	
+				      	echo get_next_posts_link( '<span class="fs-pagination-text-link"> > </span>', $the_query->max_num_pages ); 
+			      	?>
+				  </nav>
+				<?php } ?>			
+
 			</div>
 		</div>
 
