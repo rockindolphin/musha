@@ -108,7 +108,12 @@ Template Name: All services
 						<span>цена, руб.</span>
 					</div>
 					<?php 
+						$servSort =  array();
 						foreach ($service['SRV'] as $key => $value) {
+							$servSort[$value['ID']] = $value;
+						}
+						array_multisort ($servSort);					
+						foreach ($servSort as $key => $value) {
 							?>
 							<div class="price_row sln_services_<?php echo $value['ID']?>">
 								<a href="<?=site_url();?>/booking?cat=<?=$service['ID']?>&service=<?=$value['ID']?>" class="s_name">
@@ -126,7 +131,7 @@ Template Name: All services
 		</div>
 	</main>
 	<script>
-		(function(){
+		/*(function(){
 			var desc = $('.service_desc.hidden');
 			$('.price_list').after(desc);
 			$(desc).removeClass('hidden');
@@ -152,7 +157,7 @@ Template Name: All services
 			place = $('.sln_services_905');
 			place.before(target);
 
-		}());
+		}());*/
 	</script>
 <?php get_template_part('footer_tile'); ?>
 <?php get_footer(); ?>
