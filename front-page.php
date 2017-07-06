@@ -69,7 +69,6 @@ Template Name: Главная страница
 ?>	
 
 <?php get_header(); ?>
-
 	<main>
 		<div class="bg_block-first">
 			<img src="<?php the_field('bg_img_1'); ?>" data-bg="image">
@@ -112,20 +111,52 @@ Template Name: Главная страница
 					<p>
 						<?php the_field('about_text'); ?>
 					</p>
-					<div class="about_gallery">
-						<?php 
-							$repeater = get_field('about_images'); 
-							foreach ($repeater as $key => $value) {
-								echo '<img src="'.$value['about_img'].'" alt="'.$value['about_img_alt'].'">';
-							}							
-						?>
-					</div>
 				</div>
+			</div>
+		</div>
+		<div class="publications_block">
+			<div class="wrapper">
+				<?php
+					if ( function_exists( 'envira_gallery' ) ) { 
+						$gallery_id = get_field('about_images');
+						$gallery = $envira_gallery->get_gallery( $gallery_id );
+						if( $gallery && get_post_status($gallery['id']) === 'publish' ){
+						?>
+						<div class="swiper-container publications-slider">
+							<div class="swiper-wrapper">
+							<?php
+								$xids = array();
+								foreach ($gallery['gallery'] as $post_id => $post) {
+									array_push($xids, $post_id);
+								}	
+								$info = getAttachInfo($xids);
+								$publications_link = page_link_by_slug('publications');
+								foreach ($gallery['gallery'] as $post_id => $post) {
+									?>
+									<div class="swiper-slide">
+										<a href="<?php echo $publications_link.'#'.$post_id; ?>">
+										<?php
+											$attach = getAttach($post_id,$post,$info);											
+											require_once( 'custom-templates/publications.php' );
+											echo publicationHtml($attach);										
+										?>
+										</a>
+									</div>									
+									<?php
+								}																			
+							?>
+							</div>
+						</div>
+						<?php
+						}
+					}
+				?>
 			</div>
 		</div>
 		<div class="brands_block">
 			<div class="wrapper">
 				<?php 
+					the_post();
 					$repeater = get_field('brands_repeater');
 					foreach ($repeater as $key => $value) {
 						echo '<a href="'.$value['brand_link'].'" target="_blank" rel="nofollow">
@@ -136,6 +167,5 @@ Template Name: Главная страница
 			</div>
 		</div>
 	</main>
-	
 <?php get_template_part('custom-templates/footer_tile'); ?>
 <?php get_footer(); ?>
