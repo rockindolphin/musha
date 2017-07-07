@@ -1,0 +1,70 @@
+
+.musha-modal{
+	display: none;
+	z-index: 10;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	.modal-bg{
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: fade(@black, 55%); 
+		padding: 10px;
+		padding-right: 30px;
+	}
+	.modal-close{
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		right: 0;
+		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		color: @pink;
+		font-size: 25px;
+		cursor: pointer;
+	}
+	.modal-btn{
+		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		color: @pink;
+		font-size: 48px;
+		cursor: pointer;
+		&.modal-next{
+			justify-content: flex-end;
+		}
+		&.modal-prev{
+			justify-content: flex-start;
+		}
+	}
+	.modal-wrapper{
+		position: relative;
+		width: 100%;
+		max-width: 1020px;
+		display: flex;
+		flex-direction: row;
+		align-items: stretch;
+		justify-content: center;
+	}
+	.publication-wrapper{
+		background-color: @white;
+	}
+}
+
+.body-scroll-off{
+	height: 100vh;
+	overflow: hidden;
+}
