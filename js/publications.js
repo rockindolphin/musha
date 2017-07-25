@@ -63,12 +63,14 @@
 		var btn = 	$(content).find('.publication-controls>.fa');
 		var thumbnail = $(content).find('.publication-thumbnail');
 		video.onplay = function(){
+			$(video).attr('controls',true);
 			$(btn).removeClass('fa-play').addClass('fa-pause');				
 			opts.runing_video = video;
 			$(thumbnail).hide();
 			$(content).addClass('video-running');
 		};
 		video.onpause = function(){
+			$(video).attr('controls',false);
 			$(btn).removeClass('fa-pause').addClass('fa-play');					
 			opts.runing_video = false;
 			$(content).removeClass('video-running');

@@ -8,7 +8,7 @@ function publicationHtml($attach){
 	$html.= '<div class="publication-container '.$attach->container_class.'" data-post-id="'.$attach->id.'" itemscope itemtype="http://schema.org/'.$schema.'">';
 	$html .=	'<div class="publication-content">';
 				if( $attach->is_video ){
-	$html .=		'<video controls class="publication-video">'.
+	$html .=		'<video class="publication-video">'.
 						'<source src="'.$attach->link.'" itemprop="url"></source>'.
 					'</video>'.
 					'<meta itemprop="isFamilyFriendly" content="true">';

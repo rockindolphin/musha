@@ -79,7 +79,7 @@ add_theme_support( 'post-thumbnails' );
 
 function my_theme_load_resources() {
 
-		wp_enqueue_style('my_theme_style', get_template_directory_uri() . '/css/style.css', array(), '1.0.13');
+		wp_enqueue_style('my_theme_style', get_template_directory_uri() . '/css/style.css', array(), '1.0.17');
 
 }
 
@@ -98,7 +98,8 @@ if (!is_admin()) {
 	wp_register_script('jquery', ("https://code.jquery.com/jquery-2.2.4.min.js"), false, '2.2.4');
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.min.js');
-	wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', false, '0.0.3');
+	wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', false, '0.0.6');
+	wp_enqueue_script('script_cookie', ("https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"), false, '1.4.1');
 }
 
 
@@ -548,7 +549,7 @@ function addMushaPublications($attr = null){
 		$html .= '<script>'.
 					'var js_info = '.json_encode($js_info).';'.
 				 '</script>';
-		wp_enqueue_script('publications', get_template_directory_uri() . '/js/publications.js', false, '0.0.1');		
+		wp_enqueue_script('publications', get_template_directory_uri() . '/js/publications.js', false, '0.0.9');		
 		return $html;
 		
 }
