@@ -101,7 +101,7 @@ Template Name: All services
 
 					<?php echo $service['CAT']; ?>
 
-				</div>
+				</div>				
 				<div class="price_list with_bullits">
 					<div class="price_head">
 						<span>Услуга</span>
@@ -114,12 +114,24 @@ Template Name: All services
 						}
 						array_multisort ($servSort);					
 						foreach ($servSort as $key => $value) {
+							$format = '%s';
 							?>
 							<div class="price_row sln_services_<?php echo $value['ID']?>">
 								<a href="<?=site_url();?>/booking?cat=<?=$service['ID']?>&service=<?=$value['ID']?>" class="s_name">
 									<?php echo $value['NAME']; ?>
 								</a>
-								<span class="s_cost"><?php echo $value['PRICE']; ?></span>
+							<?php
+								if( mb_strtoupper($service['CAT']) === 'СТРИЖКА И УКЛАДКА' ){
+									if( strpos( mb_strtoupper($value['NAME']), 'БОТОКС' ) !== false ){
+										$format = 'от %s р.';
+									}
+								}							
+								if( $value['PRICE'] ){
+							?>
+									<span class="s_cost"><?php echo sprintf($format, $value['PRICE']); ?></span>
+							<?php
+								}
+							?>
 								<div class="s_desc"><?php echo $value['DESC']; ?></div>
 							</div>
 							<?php								
