@@ -4,7 +4,7 @@
  */
 ?>
 	<div class="footer_tile square_block">	
-		<img src="<?php bloginfo('template_url'); ?>/images/bg3.jpg" data-bg="image">
+		<img src="<?php bloginfo('template_url'); ?>/images/bg3_tiny.jpg" data-bg="image">
 		<div class="wrapper">
 			<div class="square_block-wrapper">
 					<div class="square_block-expand"></div>

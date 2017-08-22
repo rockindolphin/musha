@@ -138,7 +138,7 @@ Template Name: Главная страница
 										<?php
 											$attach = getAttach($post_id,$post,$info);											
 											require_once( 'custom-templates/publications.php' );
-											echo publicationHtml($attach);										
+											echo publicationHtml($attach,false);										
 										?>
 										</a>
 									</div>									
